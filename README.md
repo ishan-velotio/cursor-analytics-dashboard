@@ -1,124 +1,41 @@
 # Cursor Analytics Dashboard
 
-A comprehensive analytics dashboard for tracking Cursor IDE team usage, productivity metrics, and AI adoption insights.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
 
-## 🚀 Features
+## Getting Started
 
-- **Real-time Team Analytics** - Live data from Cursor Admin API
-- **Member Filtering** - Filter metrics by specific team members  
-- **Date Range Selection** - Analyze any time period (up to 90 days)
-- **Key Metrics Tracking**:
-  - Team activity and engagement rates
-  - AI assistance adoption and effectiveness  
-  - Code productivity (lines added/deleted)
-  - Monthly spending and cost per member
-  - Feature usage patterns (Chat, Composer, Agent)
-- **Interactive UI** - Modern, responsive design with real-time updates
+First, run the development server:
 
-## 🛠️ Setup
-
-### 1. Prerequisites
-- Node.js 18+ installed
-- Cursor Admin API key with team admin permissions
-
-### 2. Installation
 ```bash
-# Clone and install dependencies
-npm install
-
-# Set up environment variables
-cp .env.local.example .env.local
-```
-
-### 3. Configuration
-Create a `.env.local` file in the project root:
-
-```env
-# Cursor Admin API Configuration
-NEXT_PUBLIC_CURSOR_API_KEY=your_cursor_api_key_here
-NEXT_PUBLIC_CURSOR_API_BASE_URL=https://api.cursor.com
-NODE_ENV=development
-```
-
-### 4. Development
-```bash
-# Start development server
 npm run dev
-
-# Open http://localhost:3000
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## 📊 Dashboard Sections
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Overview
-- **Team Members** - Total count and activity rate
-- **Monthly Spending** - Team costs and per-member breakdown  
-- **Lines of Code** - Total output with AI assistance percentage
-- **AI Requests** - Chat, Composer, and Agent interactions
-- **AI Acceptance Rate** - Effectiveness of AI suggestions
-- **Team Activity** - Member engagement tracking
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Filtering Options
-- **Date Range Picker** - Last 7/30/90 days or custom range
-- **Team Member Selector** - Filter by specific members
-- **Real-time Updates** - Data refreshes automatically
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## 🔧 API Integration
+## Learn More
 
-The dashboard integrates with Cursor's Admin API endpoints:
+To learn more about Next.js, take a look at the following resources:
 
-- `/teams/members` - Team member list and roles
-- `/teams/daily-usage-data` - Productivity and usage metrics  
-- `/teams/spend` - Spending and billing information
-- `/teams/filtered-usage-events` - Detailed event tracking
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 📱 Responsive Design
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-- **Desktop** - Full dashboard with side-by-side controls
-- **Tablet** - Stacked layout with touch-friendly controls  
-- **Mobile** - Optimized for small screens with collapsible sections
+## Deploy on Vercel
 
-## 🚀 Getting Started
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-1. **Get your Cursor Admin API key** from your team dashboard
-2. **Add API key** to `.env.local` file
-3. **Start the development server** with `npm run dev`
-4. **View your analytics** at `http://localhost:3000`
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## 🔒 Security
-
-- API keys stored securely in environment variables
-- Client-side data caching with React Query
-- No sensitive data logged to console in production
-- Secure HTTPS API connections
-
-## 📈 Roadmap
-
-### Phase 1 ✅ (Current)
-- [x] Core API integration
-- [x] Team member filtering  
-- [x] Date range selection
-- [x] Overview metrics dashboard
-- [x] Responsive UI design
-
-### Phase 2 (Next)
-- [ ] Advanced chart visualizations
-- [ ] Individual member deep-dive pages
-- [ ] Trend analysis and forecasting
-- [ ] Export functionality (CSV/JSON)
-- [ ] Real-time notifications
-
-### Phase 3 (Future)  
-- [ ] Multi-team organization support
-- [ ] Custom metric definitions
-- [ ] Automated reporting
-- [ ] Integration with external tools
-- [ ] Advanced analytics and insights
-
-## 🤝 Contributing
-
-This dashboard was built to help teams understand their Cursor usage patterns. Feel free to extend it with additional metrics or visualizations based on your team's needs!
-
-## 📝 License
-
-MIT License - feel free to use and modify for your team's needs.
+<!-- Redeploy trigger with environment variables -->
+# Redeploy with environment variables
