@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, UserPlus, Check } from 'lucide-react';
+import { Search, UserPlus } from 'lucide-react';
 import { useTeamMembers } from '@/hooks/useCursorData';
 import { useMemberValidation } from '@/hooks/useTeams';
 import { cn } from '@/lib/utils';
@@ -15,7 +15,7 @@ export function MemberSearch({ onAddMember, excludeEmails = [], className }: Mem
   const [isOpen, setIsOpen] = useState(false);
   
   const { data: cursorMembers, isLoading } = useTeamMembers();
-  const { validateMember } = useMemberValidation();
+  // const { validateMember: _validateMember } = useMemberValidation();
 
   const filteredMembers = useMemo(() => {
     if (!cursorMembers?.teamMembers || !searchTerm) return [];
@@ -121,7 +121,7 @@ export function MemberSearch({ onAddMember, excludeEmails = [], className }: Mem
                   className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1 mx-auto"
                 >
                   <UserPlus className="w-4 h-4" />
-                  Add "{searchTerm}" directly
+                  Add &quot;{searchTerm}&quot; directly
                 </button>
               )}
             </div>

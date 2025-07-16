@@ -34,20 +34,24 @@ export function ProductivityTrendChart({ data, className }: ProductivityTrendCha
     acc[dateKey].applyCount += entry.totalApplies;
     
     return acc;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }, {} as Record<string, any>);
 
   // Calculate acceptance rate and convert to array
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const chartArray = Object.values(chartData).map((day: any) => ({
     ...day,
     acceptanceRate: day.applyCount > 0 ? (day.acceptanceCount / day.applyCount * 100) : 0,
     aiAdoptionRate: day.totalLines > 0 ? (day.aiAssisted / day.totalLines * 100) : 0
   }));
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
           <p className="font-medium text-gray-900 mb-2">{label}</p>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {payload.map((entry: any, index: number) => (
             <p key={index} className="text-sm" style={{ color: entry.color }}>
               <span className="font-medium">{entry.name}:</span>{' '}

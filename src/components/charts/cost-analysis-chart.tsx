@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter } from 'recharts';
 import { TeamMemberSpend, DailyUsageEntry } from '@/lib/cursor-api';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 
@@ -48,6 +48,7 @@ export function CostAnalysisChart({ spendingData, usageData, className }: CostAn
       z: item.efficiency
     }));
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
@@ -67,6 +68,7 @@ export function CostAnalysisChart({ spendingData, usageData, className }: CostAn
     return null;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ScatterTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;

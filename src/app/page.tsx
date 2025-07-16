@@ -87,15 +87,15 @@ function DashboardContent() {
     );
   }, [teamMembers, activeFilterEmails]);
 
-  const filteredUsageEvents = useMemo(() => {
-    if (!usageEvents?.usageEvents || activeFilterEmails.length === 0) {
-      return usageEvents?.usageEvents || [];
-    }
-    
-    return usageEvents.usageEvents.filter((event: any) => 
-      activeFilterEmails.includes(event.userEmail || '')
-    );
-  }, [usageEvents, activeFilterEmails]);
+  // const filteredUsageEvents = useMemo(() => {
+  //   if (!usageEvents?.usageEvents || activeFilterEmails.length === 0) {
+  //     return usageEvents?.usageEvents || [];
+  //   }
+  //   
+  //   return usageEvents.usageEvents.filter((event: { userEmail?: string }) => 
+  //     activeFilterEmails.includes(event.userEmail || '')
+  //   );
+  // }, [usageEvents, activeFilterEmails]);
 
   const isLoading = isTestingConnection || isLoadingMembers || isLoadingUsage || isLoadingSpending || isLoadingEvents;
   const hasError = membersError || usageError || spendingError;

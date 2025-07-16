@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
         member: isExisting ? { email } : null,
         note: isExisting ? 'Member exists in teams' : 'New member'
       });
-    } catch (error) {
+    } catch {
       console.log('Could not check existing members, defaulting to valid');
       return NextResponse.json({
         success: true,

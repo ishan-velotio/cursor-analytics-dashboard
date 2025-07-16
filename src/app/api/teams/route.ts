@@ -56,10 +56,10 @@ export async function POST(request: NextRequest) {
         memberCount: 0
       }
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error creating team:', error);
     
-    if (error.code === '23505') { // Unique violation
+    if (error && typeof error === 'object' && 'code' in error && error.code === '23505') { // Unique violation
       return NextResponse.json(
         { success: false, error: 'Team already exists' },
         { status: 409 }

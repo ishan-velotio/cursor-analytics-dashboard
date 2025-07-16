@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BarChart3, Users, DollarSign, TrendingUp, Brain, Target } from 'lucide-react';
+import { Users, DollarSign, TrendingUp, Brain, Target } from 'lucide-react';
 import { ProductivityTrendChart } from '@/components/charts/productivity-trend-chart';
 import { AIAdoptionHeatmap } from '@/components/charts/ai-adoption-heatmap';
 import { CostAnalysisChart } from '@/components/charts/cost-analysis-chart';
@@ -216,7 +216,7 @@ export function AnalyticsTabs({
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Powered Insights</h3>
               <p className="text-sm text-gray-600 mb-4">
-                Automated analysis and recommendations based on your team's usage patterns
+                Automated analysis and recommendations based on your team&apos;s usage patterns
               </p>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

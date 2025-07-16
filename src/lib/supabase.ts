@@ -88,6 +88,7 @@ export const teamService = {
       throw error;
     }
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data.team_members?.map((tm: any) => tm.email) || [];
   },
 

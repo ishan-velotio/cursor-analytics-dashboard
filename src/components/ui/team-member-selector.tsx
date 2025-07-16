@@ -176,7 +176,7 @@ export function TeamMemberSelector({
 
           {filteredMembers.length === 0 && (
             <div className="p-4 text-center text-sm text-gray-700">
-              No members found matching "{searchTerm}"
+              No members found matching &quot;{searchTerm}&quot;
             </div>
           )}
         </div>

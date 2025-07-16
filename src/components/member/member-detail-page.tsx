@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ArrowLeft, User, TrendingUp, Brain, DollarSign, Calendar, Target } from 'lucide-react';
+import { ArrowLeft, User, TrendingUp, Brain, DollarSign, Target } from 'lucide-react';
 import { DailyUsageEntry, TeamMember, TeamMemberSpend } from '@/lib/cursor-api';
 import { MetricCard } from '@/components/ui/metric-card';
 import { ProductivityTrendChart } from '@/components/charts/productivity-trend-chart';
 import { formatNumber, formatCurrency, formatPercentage, calculatePercentage } from '@/lib/utils';
-import { format, subDays } from 'date-fns';
+import { subDays } from 'date-fns';
 
 interface MemberDetailPageProps {
   member: TeamMember;

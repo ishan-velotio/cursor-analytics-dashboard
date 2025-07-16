@@ -58,10 +58,12 @@ export function AIAdoptionHeatmap({ usageData, members, className }: AIAdoptionH
       }
 
       return acc;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }, {} as Record<string, any>);
 
     // Convert to array and calculate percentages
     return Object.values(memberStats)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((member: any) => {
         const mostUsedModel = Object.entries(member.modelCounts)
           .sort(([,a], [,b]) => (b as number) - (a as number))[0]?.[0] || 'N/A';

@@ -13,8 +13,11 @@ import {
 import { cn } from '@/lib/utils';
 
 interface ExportButtonProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   teamMembers: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dailyUsage: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   spending: any[];
   filters: {
     dateRange: {

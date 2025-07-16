@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Export utilities for Cursor Analytics Dashboard - matching existing format
 
 export type ExportFormat = 'csv' | 'json';

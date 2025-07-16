@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('API route error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },

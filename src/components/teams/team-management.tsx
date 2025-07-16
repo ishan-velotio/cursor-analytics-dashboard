@@ -2,7 +2,6 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { 
   Plus, 
   Trash2, 
-  Edit, 
   Users, 
   X, 
   Check, 
@@ -10,7 +9,7 @@ import {
   UserPlus,
   UserMinus
 } from 'lucide-react';
-import { useTeams, useTeamMembers, useMemberValidation, useAllExistingMembers, Team } from '@/hooks/useTeams';
+import { useTeams, useTeamMembers, useMemberValidation, useAllExistingMembers } from '@/hooks/useTeams';
 import { useTeamMembers as useCursorMembers } from '@/hooks/useCursorData';
 import { MemberSearch } from './member-search';
 import { cn } from '@/lib/utils';
@@ -29,9 +28,9 @@ export function TeamManagement({ isOpen, onClose }: TeamManagementProps) {
   const lastSyncedTeam = useRef<string | null>(null);
   const lastSyncedMembers = useRef<string[]>([]);
 
-  const { teams, createTeam, deleteTeam, isLoading } = useTeams();
+  const { teams, createTeam, deleteTeam } = useTeams();
   const { members, updateMembers, isUpdating } = useTeamMembers(selectedTeam);
-  const { validateMember } = useMemberValidation();
+  // const { validateMember: _validateMember } = useMemberValidation();
   const { data: cursorMembers } = useCursorMembers();
   const { isExistingMember } = useAllExistingMembers();
 
@@ -247,7 +246,7 @@ export function TeamManagement({ isOpen, onClose }: TeamManagementProps) {
                 <div className="text-center py-8 text-gray-500">
                   <Users className="w-12 h-12 mx-auto mb-3 text-gray-300" />
                   <p>No teams created yet</p>
-                  <p className="text-sm">Click "New" to create your first team</p>
+                  <p className="text-sm">Click &quot;New&quot; to create your first team</p>
                 </div>
               )}
             </div>
