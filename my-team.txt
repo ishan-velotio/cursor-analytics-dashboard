@@ -1,0 +1,14 @@
+# Add your team members here (one per line)
+# You can use full emails or just names/partial matches
+
+# Example format:
+# ishan.khanduja@rsystems.com
+# pratik.bamb@rsystems.com
+# satyam.rathod@rsystems.com
+
+# Or just names:
+# Ishan
+# Pratik  
+# Satyam
+
+# Add your team members below: 
