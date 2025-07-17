@@ -4,6 +4,11 @@ export async function GET() {
   try {
     const apiKey = process.env.CURSOR_API_TOKEN;
     
+    // Debug logging
+    console.log('API Key exists:', !!apiKey);
+    console.log('API Key length:', apiKey?.length);
+    console.log('API Key starts with:', apiKey?.substring(0, 10));
+    
     if (!apiKey) {
       return NextResponse.json(
         { error: 'API key not configured' },
