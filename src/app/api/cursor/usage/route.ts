@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const apiKey = process.env.CURSOR_API_KEY;
+    const baseUrl = process.env.NEXT_PUBLIC_CURSOR_API_BASE_URL || 'https://api.cursor.com';
     
     if (!apiKey) {
       return NextResponse.json(
@@ -13,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
     
-    const response = await fetch('https://api.cursor.com/teams/daily-usage-data', {
+    const response = await fetch(`${baseUrl}/teams/daily-usage-data`, {
       method: 'POST',
       headers: {
         'Authorization': `Basic ${Buffer.from(apiKey + ':').toString('base64')}`,
