@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const apiKey = process.env.CURSOR_API_TOKEN;
+    const apiKey = process.env.CURSOR_API_KEY;
     
     if (!apiKey) {
       return NextResponse.json(

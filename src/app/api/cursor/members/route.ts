@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const apiKey = process.env.CURSOR_API_TOKEN;
+    const apiKey = process.env.CURSOR_API_KEY;
     
     // Debug logging
     console.log('API Key exists:', !!apiKey);
