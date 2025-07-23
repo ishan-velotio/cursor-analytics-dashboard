@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { RefreshCw, AlertCircle, CheckCircle } from 'lucide-react';
+import { RefreshCw, AlertCircle, CheckCircle, RotateCcw, Settings } from 'lucide-react';
 import { Providers } from './providers';
 import { DateRangePicker, DateRange } from '@/components/ui/date-range-picker';
 import { TeamMemberSelector } from '@/components/ui/team-member-selector';
@@ -14,7 +14,6 @@ import {
   useTeamMembers, 
   useDailyUsage, 
   useSpending, 
-  useUsageEvents,
   useDefaultDateRange,
   useAPIConnection 
 } from '@/hooks/useCursorData';
@@ -39,11 +38,12 @@ function DashboardContent() {
     !!teamMembers
   );
   const { data: spending, isLoading: isLoadingSpending, error: spendingError } = useSpending();
-  const { data: usageEvents, isLoading: isLoadingEvents } = useUsageEvents(
-    dateRange.startDate,
-    dateRange.endDate,
-    !!teamMembers
-  );
+  // Note: usageEvents is currently disabled - uncomment when needed
+  // const { data: usageEvents, isLoading: isLoadingEvents } = useUsageEvents(
+  //   dateRange.startDate,
+  //   dateRange.endDate,
+  //   !!teamMembers
+  // );
   
   // Team members hook
   const { members: teamMembersList } = useTeamMembersList(selectedTeam);
@@ -97,13 +97,33 @@ function DashboardContent() {
   //   );
   // }, [usageEvents, activeFilterEmails]);
 
-  const isLoading = isTestingConnection || isLoadingMembers || isLoadingUsage || isLoadingSpending || isLoadingEvents;
+  const isLoading = isTestingConnection || isLoadingMembers || isLoadingUsage || isLoadingSpending;
   const hasError = membersError || usageError || spendingError;
 
   // Handle member selection changes
   const handleMemberSelectionChange = (emails: string[]) => {
     setSelectedMembers(emails);
   };
+
+  // Handle reset filters
+  const handleResetFilters = () => {
+    setSelectedTeam(null);
+    setSelectedMembers([]);
+    setDateRange({
+      startDate: defaultStartDate,
+      endDate: defaultEndDate
+    });
+  };
+
+  // Check if filters are active (for reset button visibility)
+  const hasActiveFilters = useMemo(() => {
+    const hasTeamOrMembers = selectedTeam || selectedMembers.length > 0;
+    const hasCustomDateRange = 
+      dateRange.startDate.toDateString() !== defaultStartDate.toDateString() ||
+      dateRange.endDate.toDateString() !== defaultEndDate.toDateString();
+    
+    return hasTeamOrMembers || hasCustomDateRange;
+  }, [selectedTeam, selectedMembers, dateRange, defaultStartDate, defaultEndDate]);
 
   // Connection status display
   const renderConnectionStatus = () => {
@@ -206,19 +226,28 @@ function DashboardContent() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Teams
               </label>
-              <TeamSelector
-                selectedTeam={selectedTeam}
-                onChange={(team) => {
-                  setSelectedTeam(team);
-                  // Clear individual member selection when team is selected
-                  if (team) {
-                    setSelectedMembers([]);
-                  }
-                }}
-                onManageTeams={() => setIsTeamManagementOpen(true)}
-                placeholder="Select a team or use individual members"
-                className="w-full"
-              />
+              <div className="flex gap-2">
+                <TeamSelector
+                  selectedTeam={selectedTeam}
+                  onChange={(team) => {
+                    setSelectedTeam(team);
+                    // Clear individual member selection when team is selected
+                    if (team) {
+                      setSelectedMembers([]);
+                    }
+                  }}
+                  placeholder="Select a team or use individual members"
+                  className="flex-1"
+                />
+                <button
+                  onClick={() => setIsTeamManagementOpen(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 transition-colors"
+                  title="Manage Teams"
+                >
+                  <Settings className="w-4 h-4" />
+                  <span className="hidden sm:inline">Manage</span>
+                </button>
+              </div>
             </div>
             
             {/* Only show member selector when no team is selected */}
@@ -238,22 +267,44 @@ function DashboardContent() {
             )}
           </div>
           
+          {/* Reset Filters Button */}
+          {hasActiveFilters && (
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <button
+                onClick={handleResetFilters}
+                className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-md transition-colors"
+              >
+                <RotateCcw className="w-4 h-4" />
+                Reset all filters
+              </button>
+            </div>
+          )}
+          
           {/* Filter status display */}
           {(selectedTeam || selectedMembers.length > 0) && (
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <p className="text-sm text-gray-600">
-                {selectedTeam ? (
-                  <>
-                    Showing data for team <strong>{selectedTeam}</strong> ({teamMembersList.length} members)
-                    from {dateRange.startDate.toLocaleDateString()} to {dateRange.endDate.toLocaleDateString()}
-                  </>
-                ) : (
-                  <>
-                    Showing data for {selectedMembers.length} selected member(s) 
-                    from {dateRange.startDate.toLocaleDateString()} to {dateRange.endDate.toLocaleDateString()}
-                  </>
-                )}
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-gray-600">
+                  {selectedTeam ? (
+                    <>
+                      Showing data for team <strong>{selectedTeam}</strong> ({teamMembersList.length} members)
+                      from {dateRange.startDate.toLocaleDateString()} to {dateRange.endDate.toLocaleDateString()}
+                    </>
+                  ) : (
+                    <>
+                      Showing data for {selectedMembers.length} selected member(s) 
+                      from {dateRange.startDate.toLocaleDateString()} to {dateRange.endDate.toLocaleDateString()}
+                    </>
+                  )}
+                </p>
+                <button
+                  onClick={handleResetFilters}
+                  className="flex items-center gap-1 px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  Reset
+                </button>
+              </div>
             </div>
           )}
         </div>

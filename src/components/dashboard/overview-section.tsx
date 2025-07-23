@@ -16,6 +16,18 @@ export function OverviewSection({
   spendingData, 
   isLoading 
 }: OverviewSectionProps) {
+  // Debug logging
+  console.log('📊 Overview Section Debug:', {
+    teamSize,
+    dailyUsageDataCount: dailyUsageData.length,
+    sampleEntry: dailyUsageData[0],
+    totalLinesFromSample: dailyUsageData.slice(0, 5).map(entry => ({ 
+      email: entry.email, 
+      totalLinesAdded: entry.totalLinesAdded,
+      date: new Date(entry.date).toISOString().split('T')[0]
+    }))
+  });
+
   // Calculate key metrics
   const activeMembers = dailyUsageData.filter(entry => entry.isActive).length;
   const totalSpend = spendingData.reduce((sum, member) => sum + member.spendCents, 0);

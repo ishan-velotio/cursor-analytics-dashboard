@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const apiKey = process.env.CURSOR_API_KEY;
-    const baseUrl = process.env.NEXT_PUBLIC_CURSOR_API_BASE_URL;
+    const baseUrl = process.env.NEXT_PUBLIC_CURSOR_API_BASE_URL || 'https://api.cursor.com';
     
     // Debug logging
     console.log('API Key exists:', !!apiKey);
